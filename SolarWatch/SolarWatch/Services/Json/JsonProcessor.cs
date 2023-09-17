@@ -27,11 +27,11 @@ namespace SolarWatch.Services.Json
             return response;
         }
 
-        public SunriseSunsetResults Process(string data, string city, DateTime date)
+        public SunriseSunsetResults Process(string data, string cityname, DateTime date)
         {
             JsonDocument json = JsonDocument.Parse(data);
             JsonElement res = json.RootElement.GetProperty("results");
-
+            City city = new City { Name = cityname };
             SunriseSunsetResults latAndLon = new SunriseSunsetResults
             {
                 City = city,
