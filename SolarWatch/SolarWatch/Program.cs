@@ -1,8 +1,10 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using SolarWatch.Data;
 using SolarWatch.Services;
+using SolarWatch.Services.Authentication;
 using SolarWatch.Services.Json;
 using SolarWatch.Services.Repositories;
 
@@ -19,6 +21,7 @@ builder.Services.AddSingleton<IJsonProcessor, JsonProcessor>();
 builder.Services.AddTransient<ICityRepository, CityRepository>();
 builder.Services.AddTransient<ISunriseSunsetRepository, SunriseSunsetRepository>();
 builder.Services.AddDbContext<UsersContext>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 //JWT token setup
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -38,6 +41,7 @@ builder.Services
             ),
         };
     });
+   
 
 var app = builder.Build();
 

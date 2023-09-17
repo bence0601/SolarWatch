@@ -13,7 +13,7 @@ namespace SolarWatch.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // It would be a good idea to move the connection string to user secrets
-            options.UseSqlServer("Server=localhost,1433;Database=SolarWatch;User Id=sa;Password=yourStrong(!)Password;");
+            options.UseSqlServer("Server=localhost,1433;Database=SolarWatch;User Id=sa;Password=yourStrong(!)Password;Encrypt=True;TrustServerCertificate=True;");
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
