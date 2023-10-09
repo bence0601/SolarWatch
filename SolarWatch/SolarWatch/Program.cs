@@ -1,4 +1,3 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +7,7 @@ using SolarWatch.Services;
 using SolarWatch.Services.Authentication;
 using SolarWatch.Services.Json;
 using SolarWatch.Services.Repositories;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -107,4 +107,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+Cors();
+
 app.Run();
+
+void Cors()
+{
+    app.UseCors(builder =>
+    {
+        builder.AllowAnyOrigin(); // You can replace this with specific origins
+        builder.AllowAnyHeader();
+        builder.AllowAnyMethod();
+    });
+}
